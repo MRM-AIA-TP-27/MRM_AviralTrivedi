@@ -1,9 +1,7 @@
 import cv2
 import numpy as np
 
-# ----------------------------
-# Select ArUco dictionaries
-# ----------------------------
+
 aruco_dicts = {
     "4x4": cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_4X4_50),
     "5x5": cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_100),
@@ -14,9 +12,9 @@ aruco_dicts = {
 detectors = {key: cv2.aruco.ArucoDetector(aruco_dicts[key], cv2.aruco.DetectorParameters()) 
              for key in aruco_dicts}
 
-# ----------------------------------------
+
 # Camera setup
-# ----------------------------------------
+
 cap = cv2.VideoCapture(0)
 
 # Dummy calibration data
@@ -25,9 +23,9 @@ camera_matrix = np.array([[800, 0, 320],
                           [0, 0, 1]], dtype=float)
 dist_coeffs = np.zeros((5, 1))
 
-# ----------------------------------------
+
 # Main Loop
-# ----------------------------------------
+
 while True:
     ret, frame = cap.read()
     if not ret:
